@@ -19,7 +19,7 @@ RUN apt-get install -y g++-multilib gcc-multilib lib32ncurses5-dev lib32readline
 RUN apt-get install -y ccache rsync tig sudo imagemagick
 RUN apt-get install -y android-tools-adb android-tools-fastboot
 RUN apt-get install -y bc bsdmainutils file screen
-RUN apt-get install -y bash-completion wget nano
+RUN apt-get install -y bash-completion wget nano vim
 
 # ARG with default value
 ARG hostuid=1000
