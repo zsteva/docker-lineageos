@@ -1,0 +1,38 @@
+
+startup_message off
+
+chdir
+
+vbell on
+vbell_msg "bell on %t (%n)"
+hardstatus alwayslastline "%{= mc}%{+b w}%-Lw%{= MW}%n%f* %t%{-}%+Lw ||| %n %h%=%c"
+defscrollback 5000
+
+#shelltitle "zshell"
+
+defescape x
+escape x
+
+autodetach on
+#crlf off
+deflogin on
+login on
+
+# shift-left / shift-right
+# gnome-terminal
+bindkey "\033[1;2D" prev
+bindkey "\033[1;2C" next
+
+# urxvt
+bindkey "\033[[d" prev
+bindkey "\033[[c" next
+
+
+# back scroll shift-up shift-down
+bindkey "\033[1;2A" copy
+bindkey "\033[1;2B" copy
+
+#markkeys "h=^B:l=^F:$=^E"
+markkeys "\033[1;2A=^B:\033[1;2B=^F"
+
+

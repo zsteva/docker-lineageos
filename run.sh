@@ -7,11 +7,18 @@ cd $(dirname $0)
 SOURCE=$(pwd)/android
 CCACHE=$(pwd)/ccache
 CONTAINER_HOME=/home/build
-CONTAINER=lineageos
-REPOSITORY=stucki/lineageos
+CONTAINER=
+REPOSITORY=lineageos
 TAG=cm-14.1
 FORCE_BUILD=0
 PRIVILEGED=
+
+. .env
+
+test -z "$CONTAINER" && (
+	echo "please add CONTAINER in .env"
+	exit -3
+)
 
 while [[ $# > 0 ]]; do
 	key="$1"

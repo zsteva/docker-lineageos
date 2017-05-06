@@ -21,6 +21,7 @@ RUN apt-get install -y android-tools-adb android-tools-fastboot
 RUN apt-get install -y bc bsdmainutils file screen
 RUN apt-get install -y bash-completion wget nano
 
+# ARG with default value
 ARG hostuid=1000
 ARG hostgid=1000
 
@@ -32,6 +33,7 @@ RUN \
 RUN mkdir /home/build/bin
 RUN curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /home/build/bin/repo
 RUN chmod a+x /home/build/bin/repo
+COPY screenrc /home/build/.screenrc
 
 # Add sudo permission
 RUN echo "build ALL=NOPASSWD: ALL" > /etc/sudoers.d/build
