@@ -6,6 +6,7 @@ cd $(dirname $0)
 
 SOURCE=$(pwd)/android
 CCACHE=$(pwd)/ccache
+MIRROR_DIR=$(pwd)/mirror
 CONTAINER_HOME=/home/build
 CONTAINER=
 REPOSITORY=lineageos
@@ -39,6 +40,7 @@ done
 # Create shared folders
 mkdir -p $SOURCE
 mkdir -p $CCACHE
+mkdir -p $MIRROR_DIR
 
 # Build image if needed
 IMAGE_EXISTS=$(docker images $REPOSITORY)
@@ -70,7 +72,11 @@ if [[ $IS_RUNNING == "true" ]]; then
 elif [[ $IS_RUNNING == "false" ]]; then
 	docker start -i $CONTAINER
 else
-	docker run $PRIVILEGED -v $SOURCE:$CONTAINER_HOME/android:Z -v $CCACHE:/srv/ccache:Z -i -t --name $CONTAINER $REPOSITORY:$TAG
+	docker run $PRIVILEGED --rm -t -i \
+		-v $SOURCE:$CONTAINER_HOME/android:Z \
+		-v $MIRROR_DIR:$CONTAINER_HOME/mirror:Z \
+		-v $CCACHE:/srv/ccache:Z \
+		--name $CONTAINER $REPOSITORY:$TAG
 fi
 
 exit $?

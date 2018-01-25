@@ -1,7 +1,7 @@
 
 startup_message off
 
-chdir
+#chdir
 
 vbell on
 vbell_msg "bell on %t (%n)"
@@ -33,6 +33,7 @@ bindkey "\033[1;2A" copy
 bindkey "\033[1;2B" copy
 
 #markkeys "h=^B:l=^F:$=^E"
-markkeys "\033[1;2A=^B:\033[1;2B=^F"
+#markkeys "\033[1;2A=^B:\033[1;2B=^F"
+
 
 

@@ -10,3 +10,6 @@ export USER="build"
 
 # Launch screen session
 screen -s /bin/bash
+
+
+
