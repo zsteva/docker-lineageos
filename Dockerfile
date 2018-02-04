@@ -30,10 +30,15 @@ RUN \
     useradd --gid $hostgid --uid $hostuid --non-unique build && \
     rsync -a /etc/skel/ /home/build/
 
-RUN mkdir /home/build/bin
+RUN mkdir /home/build/bin /home/build/.ssh
 RUN curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /home/build/bin/repo
 RUN chmod a+x /home/build/bin/repo
 COPY screenrc /home/build/.screenrc
+COPY gitconfig.txt /home/build/.gitconfig
+COPY sshconfig.txt /home/build/.ssh/config
+COPY git-mirror-key /home/build/.ssh/id_rsa
+COPY known_hosts /home/build/.ssh/known_hosts
+RUN chmod go-rwx /home/build/.ssh/id_rsa
 
 # Add sudo permission
 RUN echo "build ALL=NOPASSWD: ALL" > /etc/sudoers.d/build

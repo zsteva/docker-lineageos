@@ -14,6 +14,8 @@ TAG=cm-14.1
 FORCE_BUILD=0
 PRIVILEGED=
 
+SSH_MIRROR_KEY=
+
 . .env
 
 test -z "$CONTAINER" && (
@@ -47,10 +49,18 @@ IMAGE_EXISTS=$(docker images $REPOSITORY)
 if [ $? -ne 0 ]; then
 	echo "docker command not found"
 	exit $?
-elif [[ $FORCE_BUILD = 1 ]] || ! echo "$IMAGE_EXISTS" | grep -q "$TAG"; then
+fi
+
+if [[ $FORCE_BUILD = 1 ]] || ! echo "$IMAGE_EXISTS" | grep -q "$TAG"; then
 	# Pull Ubuntu image to be sure it's up to date
 	echo "Fetching Docker \"ubuntu\" image..."
 	docker pull ubuntu:16.04
+
+        #if [ -n "$SSH_MIRROR_KEY" ]; then
+        #    cp "$SSH_MIRROR_KEY" ./git-mirror-key
+        #else
+        #    rm -f ./git-mirror-key
+        #fi
 
 	echo "Building Docker image $REPOSITORY:$TAG..."
 	USERID=$(id -u)

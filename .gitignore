@@ -2,3 +2,5 @@
 /android
 /ccache
 /mirror
+git-mirror-key
+known_hosts

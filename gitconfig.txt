@@ -1,0 +1,7 @@
+
+[url "ssh://git-mirror@git-mirror/https/"]
+    insteadOf = https://
+
+[url "ssh://git-mirror@git-mirror/http/"]
+    insteadOf = http://
+

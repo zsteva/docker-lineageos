@@ -1,0 +1,4 @@
+
+Host git-mirror
+    Hostname 172.17.0.1
+
